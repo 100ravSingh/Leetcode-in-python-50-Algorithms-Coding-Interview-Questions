@@ -1,7 +1,11 @@
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
-        currentSum = sum(nums)
-        n = len(nums)
-        intendedSum = n*(n+1)/2
+        left = 0
+        right = len(nums)
+        nums.sort() 
 
-        return int(intendedSum-currentSum)
+        while(left < right):
+            if nums[left] != left:
+                return left
+            left += 1
+        return left
