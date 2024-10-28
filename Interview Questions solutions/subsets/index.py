@@ -1,16 +1,18 @@
 class Solution:
-    def solution(self,nums,ans,cur,index):
-        if(index>len(nums)):
-            return
-        ans.append(cur[:])
-        for i in range(index,len(nums)):
-            if(nums[i] not in cur):
-                cur.append(nums[i])
-                self.solution(nums,ans,cur,i)
-                cur.pop()
-        return 
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        ans = []
-        cur = []
-        self.solution(nums,ans,cur,0)
+        if len(nums) == 0:
+            return []
+        
+        if len(nums) == 1:
+            return [[],nums]
+
+        nums.sort()
+        ans = [[]]
+
+        for i in nums:
+            combinations = []
+            for combination in ans:
+                combinations.append(combination+[i])
+                combinations.append(combination)
+            ans = combinations 
         return ans
